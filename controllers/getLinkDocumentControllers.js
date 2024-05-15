@@ -17,14 +17,16 @@ async function getLinkDocument(req, res) {
            correlativo = dataDocumento.Correlativo;
            
             const responseDocumento = await obtenerDocumento(tipoDocumento , correlativo);
-            
+          
             if(responseDocumento.Correlativo != null){
 
                 data =  {
                     pedido : responseDocumento.FolioExterno,
                     entidad : responseDocumento.Entidad,
                     correlativo : responseDocumento.Correlativo,
-                    url : responseDocumento.URL
+                    url : responseDocumento.URL,
+                    mensaje : responseDocumento.URL === null ? `No se ha cargado el documento para el pedido ${responseDocumento.FolioExterno}` : `proceso Existoso`,
+                    tipoDocumento: responseDocumento.TipoDocumento
             }
             
                 res.status(200).json(data);
