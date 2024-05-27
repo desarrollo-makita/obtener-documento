@@ -16,7 +16,7 @@ describe('getLinkDocument', () => {
     obtenerDocumento.mockResolvedValueOnce(mock.responseDocumento);
 
     // Simular solicitud y respuesta
-    const req = { params: { idPedido: '123456' } }; // Asegúrate de pasar correctamente el idPedido aquí
+    const req = { params: { idPedido: '123456' } };
     const res = {
         status: jest.fn().mockReturnThis(),
         json: jest.fn(),
@@ -25,7 +25,7 @@ describe('getLinkDocument', () => {
     // Llamar a la función a probar
     await getLinkDocument(req, res);
 
-    // Verificar que la función responda con el estado 404 y el mensaje adecuado
+    // Verificar que la función responda con el estado 200 y el mensaje adecuado
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       pedido: mock.responseDocumento.FolioExterno,
